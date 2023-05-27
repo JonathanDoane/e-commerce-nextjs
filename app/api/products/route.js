@@ -3,7 +3,8 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/product.model";
 
 
-export async function POST(req,res){
+
+export async function POST(req){
     mongooseConnect();
     const body = await req.json();
     const newProduct = new Product(body);

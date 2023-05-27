@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = { }
 
-
-module.exports = nextConfig
+module.exports = {
+    // target: 'experimental-serverless-trace',
+    webpack: (config) => {
+        config.experiments = config.experiments || {};
+        config.experiments.topLevelAwait = true;
+        return config;
+    },
+    experimental: {
+        appDir: true,
+        serverComponentsExternalPackages: ["mongoose"],
+    }
+};
