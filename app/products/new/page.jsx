@@ -11,7 +11,7 @@ export default function NewProduct() {
         description: '',
         price: ''
     })
-    const [error, setError] = useState ([])
+    
 
     const router = useRouter();
     const inputHandler = (e) => {
