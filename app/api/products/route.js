@@ -11,7 +11,7 @@ export async function GET(req) {
     
     if(productID) {
          const product = await Product.findById(productID);
-        console.log(product);
+        //console.log(product);
         return new Response(JSON.stringify(product));
     } else {
         const products = await Product.find();

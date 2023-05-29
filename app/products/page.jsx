@@ -26,7 +26,7 @@ export default function Products() {
                     {
                         products?.map((product,idx) => (
                             <tr key={idx}>
-                                <td >{product.name}</td>
+                                <td className="text-xl">{product.name}</td>
                                 <td>
                                     <Link href={`/products/${product._id}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
