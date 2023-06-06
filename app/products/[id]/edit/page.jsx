@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
     export default  function EditProductPage({params}) {
 
         const {id} = params
-        const [products, setProducts] = useState({ name: '', description: '', price: ''})
+        const [products, setProducts] = useState({ name: '', description: '', price: '', file:null})
         //console.log(id)
 
         useEffect(() => {
@@ -20,17 +20,31 @@ import { useRouter } from "next/navigation";
         const inputHandler = (e) => {
             setProducts({...products, [e.target.name]: e.target.value })
         }
-        const router = useRouter();
 
-        function UpdateProduct(e){
-            e.preventDefault()
-            
-            axios.put(`/api/products?id=${id}`, products)
-            .then((res)=> {console.log(res.data);router.push('/products')})
-            .catch((err)=> {console.log(err)})
-            
-    
+        const handleFileChange = async (e) => {
+            const file = e.target.files[0];
+            console.log('File:', file);
+            const buffer = await file.arrayBuffer();
+            const bufferString = Buffer.from(buffer).toString('base64');
+            console.log('Buffer:', buffer);
+            setProducts({
+                ...products,
+                file: bufferString
+            });
         }
+        const router = useRouter();
+    
+    function UpdateProduct(e){
+        e.preventDefault()
+
+        
+        axios.put(`/api/products?id=${id}`,products, {headers: {'Content-Type': products.file.type}})
+        .then((res)=> {console.log('Success:', res); 
+        router.push('/products')})
+        .catch((err)=> {console.log(err)})
+        
+    }
+    
 
 
     return (
@@ -49,10 +63,22 @@ import { useRouter } from "next/navigation";
                 <label htmlFor="price">Price (in USD) </label>
                 <input type="number" placeholder="Price" name="price" value={products.price} onChange={inputHandler}/>
 
+                <label htmlFor="images">Photos</label>
+                <div>
+                    <label className="w-24 h-24 flex items-center justify-center gap-1 text-sm text-gray-600
+                    mb-5 rounded-lg bg-gray-200 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                        </svg>
+                        Upload
+                        <input type="file" className="hidden" onChange={handleFileChange} name="file" multiple/>
+                    </label>
+                    
+                </div>
+
                 <button type="submit" className="btn-primary">Update Product</button>
             </form>
             
         </Layout>
     )
 }
- 

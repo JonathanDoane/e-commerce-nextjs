@@ -15,7 +15,11 @@ const ProductSchema = new Schema({
     price: {
         type: Number,
         required: [true, "Product Price is required"]
-    }
+    },
+    file: {
+        type: String,
+        required: [true, "Product Image is required"]
+    },
 
 }, {timestamps: true})
 

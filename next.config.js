@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+
+
 module.exports = {
     // target: 'experimental-serverless-trace',
     webpack: (config) => {
@@ -10,5 +12,6 @@ module.exports = {
     experimental: {
         appDir: true,
         serverComponentsExternalPackages: ["mongoose"],
-    }
+    },
+   
 };
