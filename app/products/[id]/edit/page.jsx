@@ -45,7 +45,7 @@ import { useRouter } from "next/navigation";
         
     }
     
-
+    const data = products.file
 
     return (
         <Layout>
@@ -64,8 +64,8 @@ import { useRouter } from "next/navigation";
                 <input type="number" placeholder="Price" name="price" value={products.price} onChange={inputHandler}/>
 
                 <label htmlFor="images">Photos</label>
-                <div>
-                    <label className="w-24 h-24 flex items-center justify-center gap-1 text-sm text-gray-600
+                <div className="flex justify-between w-1/4">
+                    <label className="w-24 h-24 flex items-center justify-center gap-1 text-sm text-black
                     mb-5 rounded-lg bg-gray-200 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -73,7 +73,7 @@ import { useRouter } from "next/navigation";
                         Upload
                         <input type="file" className="hidden" onChange={handleFileChange} name="file" multiple/>
                     </label>
-                    
+                    <img src={`data:image/png;base64,${data}`} alt="" className="h-32 border-black border-2 p-1"/>
                 </div>
 
                 <button type="submit" className="btn-primary">Update Product</button>

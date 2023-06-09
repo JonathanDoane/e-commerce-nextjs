@@ -40,7 +40,7 @@ export default function ViewProductPage({ params }) {
             {
                 !loading ? (
                     <div className="bg-blue-900 rounded-lg text-white text-center text-2xl w-1/2 m-auto mt-8 p-8">
-                        <h2 className="mb-5">Price: {products.price}</h2>
+                        <h2 className="mb-5">Price: ${products.price}</h2>
                         <h2 className="mb-5">Description: {products.description}</h2>
                         <img src={`data:image/png;base64,${data}`} alt="Photo Unavailable" className="w-1/3 m-auto rounded-md"/>
                     </div>
